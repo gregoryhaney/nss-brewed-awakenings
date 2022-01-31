@@ -14,3 +14,29 @@ export const Products = () => {
     return html
 }
 
+
+// adding event listener: click on a product
+//  and get it's price displayed in Alert window
+
+// need to import getProducts from database.js
+// need to invoke the getProducts fn
+// both steps already done above, so "products"
+// is availble as the variable holding the return from getProducts
+
+document.addEventListener(
+    "click",
+    (clickEvent) => {
+        const itemClicked = clickEvent.target
+        if (itemClicked.id.startsWith("product")) {
+            const [,productsId] = itemClicked.id.split("--")
+
+            for (const product of products) {
+                if (product.id === parseInt(productsId)) {     
+                        
+                    window.alert(`${product.name} costs $${product.price}`)
+                        
+                }
+            }
+        }
+    }
+)

@@ -61,3 +61,11 @@ export const getOrders = () => {
     return database.orders.map(order => ({...order}))
 }
 
+// ONE employee can be responsible
+// for creating MANY orders
+// ERD Ref: "employees"."id" < "orders"."employeeId"
+
+
+// ONE product can be the subject
+// of MANY orders
+// ERD Ref: "products"."id" < "orders"."productId"
