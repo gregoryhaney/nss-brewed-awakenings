@@ -10,12 +10,11 @@ const orders = getOrders()
 const findproduct = (order, allProducts) => {
     let orderProduct = null
 
-    for (const product of allProducts) {
-        if (product.id === order.productId) {
-            orderProduct = product
-        }
-    }
-
+            for (const product of allProducts) {
+                if (product.id === order.productId) {
+                    orderProduct = product
+                }
+            }
     return orderProduct
 }
 
@@ -23,14 +22,24 @@ const findproduct = (order, allProducts) => {
 const findemployee = (order, allEmployees) => {
     let orderEmployee = null
 
-    for (const employee in allEmployees) {
-        if (employee.id === order.employeeId) {
-            orderEmployee = employee
-        }
-    }
-
+            for (const employee of allEmployees) {
+                if (employee.id === order.employeeId) {
+                    orderEmployee = employee
+                }
+            }
     return orderEmployee
 }
+
+
+/*  fn for "Orders" section of index.html
+    requires:
+        1. product.name (from getProducts)
+        2. employee.name (from getEmployees)
+        3. order.timestamp (from getOrders)
+
+    Need to check if the employee id matches
+    the order's employee id during iteration.
+*/
 
 export const Orders = () => {
     let html = ""
@@ -40,17 +49,18 @@ export const Orders = () => {
         
         const employee = findemployee(order, employees)
         const product = findproduct(order, products)
-
-        html += `
-                <li>
-                ${product.name} was sold by 
-                ${employees.name} on 
-                ${new Date(order.timestamp).toLocaleDateString()}
-                </li>`
+            for (const employee of employees){
+                        if (order.employeeId === employee.id) {
+                    html += `
+                            <li>
+                            ${product.name} was sold by 
+                            ${employee.name} on 
+                            ${new Date(order.timestamp).toLocaleDateString()}
+                            </li>`
+                        }
+            }
     }
-
     html += "</ul>"
 
     return html
 }
-

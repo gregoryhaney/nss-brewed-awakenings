@@ -14,14 +14,13 @@ export const Products = () => {
     return html
 }
 
-
-// adding event listener: click on a product
-//  and get it's price displayed in Alert window
-
-// need to import getProducts from database.js
-// need to invoke the getProducts fn
-// both steps already done above, so "products"
-// is availble as the variable holding the return from getProducts
+/*  adding event listener: click on a product
+    and get it's price displayed in Alert window
+        1. need to import getProducts from database.js
+        2. need to invoke the getProducts fn
+            a. both steps already done above, so "products" is
+             available as the var holding the return from getProducts
+*/
 
 document.addEventListener(
     "click",
@@ -33,8 +32,7 @@ document.addEventListener(
             for (const product of products) {
                 if (product.id === parseInt(productsId)) {     
                         
-                    window.alert(`${product.name} costs $${product.price}`)
-                        
+                    window.alert(`${product.name} costs $${product.price}`)     
                 }
             }
         }
